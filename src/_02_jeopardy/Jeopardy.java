@@ -49,11 +49,12 @@ public class Jeopardy implements ActionListener {
 		frame.setLayout(new BorderLayout());
 
 		// 1. Make the frame show up
-
+		frame.setVisible(true);
 		// 2. Give your frame a title
-
+		frame.setTitle("Jeopardary");
 		// 3. Create a JPanel variable to hold the header using the createHeader method
-
+		JPanel ci = createHeader("Jeopardry");
+		
 		// 4. Add the header component to the quizPanel
 
 		// 5. Add the quizPanel to the frame
@@ -128,7 +129,8 @@ public class Jeopardy implements ActionListener {
 		// Use the playJeopardyTheme() method to play music while the use thinks of an answer
 		
 		// Remove this temporary message and replace it with a pop-up that asks the user the question
-		JOptionPane.showMessageDialog(null, "this is where the question will be asked");
+		String question = "";
+		JOptionPane.showMessageDialog(null, question);
 		
 		// Stop the theme music when they have entered their response.
 		
