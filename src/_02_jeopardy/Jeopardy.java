@@ -33,7 +33,7 @@ import game_tools.Sound;
 public class Jeopardy implements ActionListener {
 	private JButton firstButton;
 	private JButton secondButton;
-	private JButton thirdButton, fourthButton;
+	private JButton thirdButton, fourthButton, fifthButton;
 	private JPanel quizPanel;
 	private int score = 0;
 	private JLabel scoreBox = new JLabel("0");
@@ -54,18 +54,17 @@ public class Jeopardy implements ActionListener {
 		frame.setTitle("Jeopardary");
 		// 3. Create a JPanel variable to hold the header using the createHeader method
 		JPanel ci = createHeader("Jeopardry");
-		
 		// 4. Add the header component to the quizPanel
-
+		
 		// 5. Add the quizPanel to the frame
-
+		frame.add(ci);
 		// 6. Use the createButton method to set the value of firstButton
-
+			firstButton = createButton("100");
 		// 7. Add the firstButton to the quizPanel
 
 		// 8. Write the code to complete the createButton() method below. Check that your
 		// game looks like Figure 1 in the Jeopardy Handout - http://bit.ly/1bvnvd4.
-
+			
 		// 9. Use the secondButton variable to hold a button using the createButton
 		// method
 
@@ -93,14 +92,14 @@ public class Jeopardy implements ActionListener {
 	private JButton createButton(String dollarAmount) {
 		
 		// Create a new JButton
-
+		JButton corgi = new JButton();
 		// Set the text of the button to the dollarAmount
-
+		corgi.setText(dollarAmount);
 		// Increment the buttonCount (this should make the layout vertical)
-
+		buttonCount++;
 		// Return your new button instead of the temporary button
 
-		return new JButton("temporary button");
+		return corgi;
 	}
 
 	@Override
@@ -111,7 +110,21 @@ public class Jeopardy implements ActionListener {
 
 		JButton buttonPressed = (JButton) e.getSource();
 		// If the buttonPressed was the firstButton
-
+			if(buttonPressed == firstButton) {
+				askQuestion("", "", 0);
+			}
+			else if(buttonPressed == secondButton) {
+				askQuestion("", "", 0);
+			}
+			else if(buttonPressed == thirdButton) {
+				askQuestion("", "", 0);
+			}
+			else if(buttonPressed == fourthButton) {
+				askQuestion("", "", 0);
+			}
+			else if(buttonPressed == fifthButton) {
+				askQuestion("", "", 0);
+			}
 			// Call the askQuestion() method
  
 		// Complete the code in the askQuestion() method. When you play the game, the score should change.
@@ -121,33 +134,34 @@ public class Jeopardy implements ActionListener {
 			// Call the askQuestion() method with a harder question
 
 		// Clear the text on the button that was pressed (set the button text to nothing)
-
+			//leave any server with the discord bot restorecord
 	}
 
 	private void askQuestion(String question, String correctAnswer, int prizeMoney) {
 		
 		// Use the playJeopardyTheme() method to play music while the use thinks of an answer
-		
+		playJeopardyTheme();
 		// Remove this temporary message and replace it with a pop-up that asks the user the question
-		String question = "";
 		JOptionPane.showMessageDialog(null, question);
 		
 		// Stop the theme music when they have entered their response.
-		
+		stopJeopardyTheme();
 		// If the answer is correct
-
+			if(question.equals(correctAnswer)) {
 			// Increase the score by the prizeMoney
-
+			score+=prizeMoney;
 			// Pop up a message to tell the user they were correct
-
+			JOptionPane.showMessageDialog(null, "You were right!");
+			}
 		// Otherwise
-
+			else {
 			// Decrement the score by the prizeMoney
-
+			score-=prizeMoney;
 			// Pop up a message to tell the user they were wrong and give them the correct answer
-
+			JOptionPane.showMessageDialog(null, "You were wrong. Womp womp.");
+			}
 		// Call the updateScore() method
-
+			updateScore();
 	}
 
 	public void playJeopardyTheme() {
