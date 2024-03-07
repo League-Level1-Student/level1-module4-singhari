@@ -55,27 +55,35 @@ public class Jeopardy implements ActionListener {
 		// 3. Create a JPanel variable to hold the header using the createHeader method
 		JPanel ci = createHeader("Jeopardry");
 		// 4. Add the header component to the quizPanel
-		
+//		JPanel.setBackground(Color.RED);
 		// 5. Add the quizPanel to the frame
 		frame.add(ci);
 		// 6. Use the createButton method to set the value of firstButton
-			firstButton = createButton("100");
+			firstButton = createButton("1000");
 		// 7. Add the firstButton to the quizPanel
-
+				ci.add(firstButton);
 		// 8. Write the code to complete the createButton() method below. Check that your
 		// game looks like Figure 1 in the Jeopardy Handout - http://bit.ly/1bvnvd4.
 			
 		// 9. Use the secondButton variable to hold a button using the createButton
 		// method
-
+				secondButton = createButton("400");
 		// 10. Add the secondButton to the quizPanel
-
+				ci.add(secondButton);
 		// 11. Add action listeners to the buttons (2 lines of code)
-
+				thirdButton = createButton("200");
 		// 12. Write the code to complete the actionPerformed() method below
-
+				fourthButton=createButton("800");
+				fifthButton = createButton("600");
+				ci.add(thirdButton);
+				ci.add(fourthButton);
+				ci.add(fifthButton);
 		// 13. Add buttons so that you have $200, $400, $600, $800 and $1000 questions
-		
+				firstButton.addActionListener(this);
+				secondButton.addActionListener(this);
+				thirdButton.addActionListener(this);
+				fourthButton.addActionListener(this);
+				fifthButton.addActionListener(this);
 		 /*
 		 * [optional] Use the showImage or playSound methods when the user answers a
 		 * question
@@ -111,19 +119,19 @@ public class Jeopardy implements ActionListener {
 		JButton buttonPressed = (JButton) e.getSource();
 		// If the buttonPressed was the firstButton
 			if(buttonPressed == firstButton) {
-				askQuestion("", "", 0);
+				askQuestion("What element is most abundant in H1 regions?", "Hydrogen", 1000);
 			}
 			else if(buttonPressed == secondButton) {
-				askQuestion("", "", 0);
+				askQuestion("What is the molar mass of O2?", "32 amu", 400);
 			}
 			else if(buttonPressed == thirdButton) {
-				askQuestion("", "", 0);
+				askQuestion("Sagittarius A* is in the center of which galaxy?", "Milky Way Galaxy", 200);
 			}
 			else if(buttonPressed == fourthButton) {
-				askQuestion("", "", 0);
+				askQuestion("Where was Microraptor discovered?", "China", 800);
 			}
 			else if(buttonPressed == fifthButton) {
-				askQuestion("", "", 0);
+				askQuestion("What is the word for the smallest amount of data on a quantum computer?", "qubit", 600);
 			}
 			// Call the askQuestion() method
  
@@ -134,6 +142,7 @@ public class Jeopardy implements ActionListener {
 			// Call the askQuestion() method with a harder question
 
 		// Clear the text on the button that was pressed (set the button text to nothing)
+			buttonPressed.setText("");
 			//leave any server with the discord bot restorecord
 	}
 
@@ -142,12 +151,12 @@ public class Jeopardy implements ActionListener {
 		// Use the playJeopardyTheme() method to play music while the use thinks of an answer
 		playJeopardyTheme();
 		// Remove this temporary message and replace it with a pop-up that asks the user the question
-		JOptionPane.showMessageDialog(null, question);
+		String answer = JOptionPane.showInputDialog(null,question);
 		
 		// Stop the theme music when they have entered their response.
 		stopJeopardyTheme();
 		// If the answer is correct
-			if(question.equals(correctAnswer)) {
+			if(answer.equals(correctAnswer)) {
 			// Increase the score by the prizeMoney
 			score+=prizeMoney;
 			// Pop up a message to tell the user they were correct
