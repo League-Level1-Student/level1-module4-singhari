@@ -30,7 +30,9 @@ public class BookOfIllusions extends MouseAdapter {
 		// 7. use the "loadImage..." methods below to initialize your JLabel
 		// 8. add your JLabel to the frame
 		// 9. call the pack() method on the frame
+		Boink.pack();
 		// 10. add a mouse listener to your frame (hint: use *this*)
+		Boink.addMouseListener(this);
 	}
 
 	public void mousePressed(MouseEvent e) {
