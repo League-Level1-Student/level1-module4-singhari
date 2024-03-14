@@ -7,7 +7,7 @@ public class TypeTutor implements KeyListener {
 	JFrame frame = new JFrame();
 	JPanel panel = new JPanel();
 	char currentLetter = generateRandomLetter();
-	
+	//Was complete until some script on the league computers deleted THE COMPLETED VERSION OF THIS AND MY COMPLETED BOOK OF ILLSIOUNS
 	void setup() {
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

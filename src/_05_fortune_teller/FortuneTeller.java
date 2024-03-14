@@ -37,9 +37,9 @@ public class FortuneTeller extends JPanel implements Runnable, MouseListener {
         int mouseY = e.getY();
         
         // 5. Print the mouseX variable
-        
+        System.out.println(mouseX);
         // 6. Add the mouseY variable to the previous line so that it prints out too (no new line)
-        
+        System.out.print(mouseY);
         // 7. Adjust your secret location co-ordinates here:
         int secretLocationX = 0;
         int secretLocationY = 0;
