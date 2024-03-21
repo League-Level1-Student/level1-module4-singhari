@@ -39,7 +39,7 @@ public class TypeTutor implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		currentLetter = generateRandomLetter();
-		String newLetter = String.valueOf(currentLetter)/
+		String newLetter = String.valueOf(currentLetter);
 		//label.setText(newLetter);
 	}
 	@Override
