@@ -31,7 +31,6 @@ public class PigLatinTranslator {
         }
         return latin;
     }
-    
     /**
      * Method to translate a pig latin to english.
      * 
