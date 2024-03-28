@@ -6,12 +6,13 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class PigLatinRunner implements ActionListener {
+	String pigW;
 	 JFrame frame = new JFrame();
 	 JPanel pan = new JPanel();
 	 JButton engWordSubmit = new JButton(">>");
 	 JTextField engWordEnter = new JTextField("English word");
 	 JButton pigWordSubmit = new JButton("<<");
-	 JTextField pigWordEnter = new JTextField("Pig Latin word");
+	 JTextField pigWord = new JTextField("Pig Latin Word");
 	 JButton speak = new JButton("Speak");
 	public static void main(String[] args) {
 		PigLatinRunner l = new PigLatinRunner();
@@ -27,7 +28,7 @@ public class PigLatinRunner implements ActionListener {
 		 pan.add(engWordSubmit);
 		 pan.add(engWordEnter);
 		 pan.add(pigWordSubmit);
-		 pan.add(pigWordEnter);
+		 pan.add(pigWord);
 		 pan.add(speak);
 		 frame.add(pan);
 		 frame.pack();
@@ -39,10 +40,14 @@ public class PigLatinRunner implements ActionListener {
 		//https://www.geeksforgeeks.org/java-swing-jtextfield/
 		String s = e.getActionCommand();
 		if(s.equals(">>")) {
-			
+			String text = engWordEnter.getText();
+			pigW = PigLatinTranslator.translateEnglishToPigLatin(text);
+			pigWord.setText(pigW);
 		}
 		else if(s.equals("<<")) {
-			
+			String text = pigWord.getText();
+			pigW = PigLatinTranslator.translatePigLatinToEnglish(text);
+			engWordEnter.setText(pigW);
 		}
 		else if(s.equals("Speak")) {
 			
