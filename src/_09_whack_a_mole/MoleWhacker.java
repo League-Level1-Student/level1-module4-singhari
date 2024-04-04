@@ -11,6 +11,9 @@ public class MoleWhacker implements ActionListener {
 	 JFrame frame = new JFrame();
 	 JPanel pan = new JPanel();
 	 Random ran = new Random();
+	int num = ran.nextInt(26)+1;
+//	 JPanel flannel = new JPanel();
+	 JButton moleButton;
 	 static int moles = 0;
 	public static void main(String[] args) {
 		MoleWhacker whack = new MoleWhacker();
@@ -21,8 +24,7 @@ public class MoleWhacker implements ActionListener {
 	//	}
 	}
 	void start(){
-		int num = ran.nextInt(26)+1;
-		drawButton(num);
+		drawButton(num, pan);
 		frame.add(pan);
 		frame.setSize(600,500);
 		frame.setVisible(true);
@@ -33,18 +35,23 @@ public class MoleWhacker implements ActionListener {
 		} 
 	}
 	//drawing buttons 
-	public void drawButton(int i) {
+	public void drawButton(int i, JPanel p) {
+		int num1 = ran.nextInt(i);
 		for(int j=0; j< i; j++) {
 			JButton b = new JButton();
 			b.addActionListener(this);
-		//	int num1 = ran.nextInt(i);
-			if(j == i-1) {
+			if(j == num1) {
+				moleButton = b;
 				b.setText("mole!");
 			}
-			pan.add(b);
+			p.add(b);
 		}
 	}
-	
+	public JPanel removeButtons(int i, JPanel p) {
+		frame.remove(p);
+		drawButton(i,p);
+		return p;
+	}
 	//for speaking
 	static void speak(String words) {
         if( System.getProperty( "os.name" ).contains( "Windows" ) ) {
@@ -71,14 +78,21 @@ public class MoleWhacker implements ActionListener {
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		String s = e.getActionCommand();
+		JButton temp = (JButton) e.getSource();
+//		String s = e.getActionCommand();
 		
-		if(s.equals("")) {
-			speak("wrong");
+		if(temp == moleButton) {
+			speak("nice");
+			int num2 = ran.nextInt(num)+1;
+			pan.removeAll();
+//			frame.add(removeButtons(num2, pan));
+			drawButton(num2, pan);
+			frame.pack();
 		}
 		else {
-			speak("nice");
+			speak("wrong");
 			moles++;
+
 		}
 	}
 
