@@ -30,7 +30,7 @@ public class MoleWhacker implements ActionListener {
 		int molesNeededToWin = 3;
 		if(moles == molesNeededToWin) {
 			endGame(dat, moles);
-		}
+		} 
 	}
 	//drawing buttons 
 	public void drawButton(int i) {

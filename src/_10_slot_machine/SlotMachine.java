@@ -17,6 +17,10 @@ public class SlotMachine implements ActionListener {
 	}
 	void start(){
 		spin.addActionListener(this);
+		pan.add(spin);
+		frame.add(pan);
+		frame.pack();
+		frame.setVisible(true);
 	}
 	String imageChooser() {
 		int num = ran.nextInt(3);
@@ -48,6 +52,8 @@ public class SlotMachine implements ActionListener {
 		String fileName = imageChooser();
 		try {
 			JLabel imagee = createLabelImage(fileName);
+			frame.add(imagee);
+			frame.pack();
 		} catch (MalformedURLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
