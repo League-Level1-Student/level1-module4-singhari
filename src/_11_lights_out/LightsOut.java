@@ -3,6 +3,7 @@ package _11_lights_out;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Random;
 
 import javax.swing.*;
 
@@ -21,7 +22,7 @@ public class LightsOut implements MouseListener {
 	JPanel gamePanel = new JPanel();
 	JFrame frame = new JFrame();
 	int lNum = 25;
-
+	Random ran = new Random();
 	public LightsOut() {
 
 		/** PART 1. CREATE YOUR LIGHT BOARD **/
@@ -39,8 +40,16 @@ public class LightsOut implements MouseListener {
 			// - you will also have to set the background to opaque.
 			// - Use light.setOpaque(true);
 					l.setBackground(Color.WHITE);
+					int nui = ran.nextInt(lNum);
+					for(int j = 0; j < lNum; j++) {
+						if(nui%3 == 0) {
+							toggle(l);
+						}
+					}
+					l.setOpaque(true);
 			//5. Add a mouseListener to each light
 					l.addMouseListener(this);
+					gamePanel.add(l);
 				}
 		//6. Add your panel to a frame
 			frame.add(gamePanel);
@@ -48,6 +57,8 @@ public class LightsOut implements MouseListener {
 		frame.setSize(600,600);
 		frame.setBackground(Color.DARK_GRAY);
 		frame.setVisible(true);
+		
+
 	}
 
 	@Override
@@ -56,8 +67,9 @@ public class LightsOut implements MouseListener {
 		// 1. Get the light that was clicked on `(JLabel) e.getSource`
 			JLabel light = (JLabel) e.getSource();
 		// 2. Get the number (position) of the light
-			String nu = e.getActionCommand();
+			String nu = light.getText();
 			int num = Integer.parseInt(nu);
+			System.out.println(num);
 		// 3. Now use the makeMove method to code which lights turn on and off.
 			makeMove(num);
 		// 4.Check if the player has won (e.g. all the lights are off)
@@ -68,7 +80,7 @@ public class LightsOut implements MouseListener {
 			//	int checker = 0;
 				JLabel checked = getLightAtPosition(i);
 				Color idk = checked.getBackground();
-				if(idk.equals(Color.LIGHT_GRAY)) {
+				if(idk.equals(Color.WHITE)) {
 					checker++;
 				}
 			}
@@ -77,7 +89,7 @@ public class LightsOut implements MouseListener {
 			}
 		/** PART 3: RANDOMIZE YOUR BOARD **/
 		// Now that your game works can you make the game start with some lights on?
-
+			
 	}
 
 	void makeMove(int pos) {
@@ -103,6 +115,7 @@ public class LightsOut implements MouseListener {
 	void toggle(JLabel label) {
 		if (label.getBackground() == Color.WHITE) {
 			label.setBackground(Color.LIGHT_GRAY);
+			System.out.println(label.getText());
 
 		} else {
 			label.setBackground(Color.WHITE);
