@@ -20,6 +20,7 @@ public class LightsOut implements MouseListener {
 
 	JPanel gamePanel = new JPanel();
 	JFrame frame = new JFrame();
+	int lNum = 25;
 
 	public LightsOut() {
 
@@ -27,7 +28,7 @@ public class LightsOut implements MouseListener {
 		//1. Make your gamePanel a 5x5 grid with setLayout(new GridLayout(5, 5));
 			gamePanel.setLayout(new GridLayout(5,5));
 			//2. Add 25 JLabels to your gamePanel (these are your lights)
-				for(int i = 0; i < 25; i++) {
+				for(int i = 0; i < lNum; i++) {
 					JLabel l = new JLabel();
 					String s = "" + i;
 					l.setText(s);
@@ -41,26 +42,39 @@ public class LightsOut implements MouseListener {
 			//5. Add a mouseListener to each light
 					l.addMouseListener(this);
 				}
-		
 		//6. Add your panel to a frame
 			frame.add(gamePanel);
 		//7. Set the size of the frame
-
+		frame.setSize(600,600);
+		frame.setBackground(Color.DARK_GRAY);
+		frame.setVisible(true);
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		/** PART 2: TOGGLE NEIGHBORING LIGHTS **/
 		// 1. Get the light that was clicked on `(JLabel) e.getSource`
-			
+			JLabel light = (JLabel) e.getSource();
 		// 2. Get the number (position) of the light
-//			String num = (String) e.getActionCommand();
+			String nu = e.getActionCommand();
+			int num = Integer.parseInt(nu);
 		// 3. Now use the makeMove method to code which lights turn on and off.
-
+			makeMove(num);
 		// 4.Check if the player has won (e.g. all the lights are off)
 		// ---- HINT: use `getLightAtPosition` to get the light at each position
 		// ---------- use 'getBackground' to get the light color
-
+			int checker = 0;
+			for(int i = 0; i < lNum; i++) {
+			//	int checker = 0;
+				JLabel checked = getLightAtPosition(i);
+				Color idk = checked.getBackground();
+				if(idk.equals(Color.LIGHT_GRAY)) {
+					checker++;
+				}
+			}
+			if(checker < 1) {
+				System.out.println("You won!");
+			}
 		/** PART 3: RANDOMIZE YOUR BOARD **/
 		// Now that your game works can you make the game start with some lights on?
 
